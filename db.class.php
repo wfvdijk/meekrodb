@@ -480,7 +480,7 @@ class MeekroDB {
   }
   
   public function columnList($table) {
-    $data = $this->query("SHOW COLUMNS FROM %b", $table);
+    $data = $this->query("SHOW FULL COLUMNS FROM %b", $table);
     $columns = array();
     foreach ($data as $row) {
       $columns[$row['Field']] = array(
@@ -488,7 +488,8 @@ class MeekroDB {
         'null' => $row['Null'],
         'key' => $row['Key'],
         'default' => $row['Default'],
-        'extra' => $row['Extra']
+        'extra' => $row['Extra'],
+        'comment' => $row['Comment']
       );
     }
 
