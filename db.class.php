@@ -473,6 +473,14 @@ class MeekroDB {
     return $this->query($query);
   }
   
+  public function truncate() {
+    $args = func_get_args();
+    $table = $this->formatTableName(array_shift($args));
+
+    $query = "TRUNCATE TABLE {$table}";
+    return $this->query($query);
+  }
+  
   public function sqleval() {
     $args = func_get_args();
     $text = call_user_func_array(array($this, 'parse'), $args);
